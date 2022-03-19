@@ -1,0 +1,41 @@
+@import '../../styles/guidelines';
+
+.mainContentWrapper {
+	width: 100%;
+	display: flex;
+	// grid-template-columns: 10% 80% 10%;
+	align-items: center;
+	justify-content: flex-start;
+
+	/* Hide if only screen is smaller than 1000px */
+	@media (max-width: 1000px) {
+		display: block;
+	}
+}
+
+.arrowButton {
+	min-width: 10%;
+	background: none;
+	border: none;
+	cursor: pointer;
+
+	/* Hide if only screen is smaller than 1000px */
+	@media (max-width: 1000px) {
+		display: none;
+	}
+}
+
+.itemsWrapper {
+	display: flex;
+	justify-content: flex-start;
+	max-width: 80%;
+
+	> span {
+		margin-right: 3rem !important;
+	}
+}
+
+.hidden {
+	position: absolute;
+	opacity: 0;
+}
