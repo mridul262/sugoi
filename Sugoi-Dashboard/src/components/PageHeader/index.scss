@@ -1,0 +1,95 @@
+@use '../../styles/utils.scss';
+@import '../../styles/guidelines.scss';
+
+.page-header {
+	background: $sage1;
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 2px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	width: 100%;
+	min-height: max-content;
+	padding-right: 45px !important;
+	padding-left: 110px !important;
+
+	&__left {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+	}
+
+	@media (max-width: 767px) {
+		display: block;
+	}
+
+	.header-right-wrap {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+
+		@media (max-width: 767px) {
+			margin-top: 15px;
+		}
+
+		.progress-bar {
+			margin: 0 0.5em !important;
+			margin-right: 30px;
+			width: 240px;
+
+			@media (max-width: 768px) {
+				margin: 0 0.5em !important;
+				margin-right: 0;
+			}
+		}
+
+		.button {
+			background-color: $grey_5;
+			border-radius: 30px;
+			margin-right: 0;
+			padding-left: 1.9em;
+			padding-right: 1.9em;
+			white-space: nowrap;
+
+			@media (max-width: 768px) {
+				margin-right: 1em;
+				padding-left: 1.2em;
+				padding-right: 1.2em;
+			}
+		}
+	}
+
+	.ui.header {
+		display: flex;
+		// Override default top margin so less space between
+		// breadcrumbs and header.
+		margin-top: 1.2rem;
+		margin-right: 2rem;
+	}
+
+	@media screen and (min-width: 310px) and (max-width: 767px) {
+		float: left;
+		margin-bottom: 0;
+		padding: 0 16px;
+		width: 100%;
+
+		.ui.breadcrumb {
+			font-size: 0.9rem !important;
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.header-right-wrap {
+		.label {
+			font-size: 10px !important;
+		}
+	}
+
+	.page-header {
+		padding: 0 16px;
+	}
+}

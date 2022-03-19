@@ -1,0 +1,131 @@
+@mixin flex($row-or-col, $justify-value, $align-value) {
+	display: flex;
+	flex-direction: $row-or-col;
+	justify-content: $justify-value;
+	align-items: $align-value;
+}
+
+@mixin heroBG {
+	position: absolute;
+	object-fit: cover;
+	object-position: right;
+	z-index: 0;
+	top: -10vh;
+	width: 100%;
+	height: 100%;
+}
+
+@mixin brandBG {
+	background-image: url('./Assets/hashtap_brand_signup_bg.png');
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+}
+
+@mixin creatorBG {
+	background-image: url('./Assets/hashtap_creator_signup_bg.png');
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+}
+
+@mixin brandBGCut {
+	background-image: url('./Assets/hashtap_brand_signup_bg.png');
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	object-fit: fill;
+	height: 100vh;
+}
+
+@mixin creatorBGCut {
+	background-image: url('./Assets/hashtap_creator_signup_bg.png');
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+}
+
+@mixin brandNavBG {
+	background-image: url('./Assets/hashtap_brand_signup_bg.png');
+
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+}
+
+@mixin boxShadow {
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+@mixin button {
+	width: auto;
+	text-align: center;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+
+	@include flex(row, center, center);
+
+	border: none;
+}
+
+@mixin creatorButton {
+	@include button;
+
+	background-color: var(--light-yellow);
+	color: white;
+	border-radius: 50px;
+}
+
+@mixin creatorSquareButton {
+	@include button;
+
+	background-color: var(--light-yellow);
+	color: white;
+	border-radius: 2px;
+}
+
+@mixin plainSquareButton {
+	@include button;
+
+	background-color: white;
+	color: black;
+	color: var(--teal);
+	border: 1px solid rgb(200, 200, 200, 1);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+}
+
+@mixin brandButton {
+	@include button;
+
+	background-color: var(--light-teal);
+	color: white;
+	border-radius: 50px;
+}
+
+@mixin brandSquareButton {
+	@include button;
+
+	background-color: var(--light-teal);
+	color: white;
+	border-radius: 2px;
+}
+
+@mixin inputText {
+	font-size: 16px;
+	font-family: Open Sans, sans-serif;
+}
