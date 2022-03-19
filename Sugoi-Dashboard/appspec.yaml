@@ -1,0 +1,44 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/hashtap-app
+    overwrite: true
+hooks:
+  # ApplicationStop:
+  #   - location: 
+  #     timeout:
+  #     runas:
+  #   - location: 
+  #     timeout:
+  #     runas: 
+# During the BeforeInstall deployment lifecycle event, run the comman
+#   in the script specified in "location".
+  # BeforeInstall:
+  #   - location: beforeInstall.sh
+  #     timeout: 600
+# During the AfterInstall deployment lifecycle event, run the commands 
+#   in the script specified in "location".
+  # AfterInstall:
+  #   - location:     
+  #     timeout: 
+#     - location: 
+#       timeout:
+#       runas:
+# # During the ApplicationStart deployment lifecycle event, run the commands 
+# #   in the script specified in "location".
+  ApplicationStart:
+    - location: applicationStart.sh     
+      timeout: 3000 #5mins
+#     - location: 
+#       timeout:
+#       runas:
+# # During the ValidateService deployment lifecycle event, run the commands 
+# #   in the script specified in "location".
+#   ValidateService:
+#     - location:     
+#       timeout: 
+#       runas:
+#     - location: 
+#       timeout:
+#       runas:
