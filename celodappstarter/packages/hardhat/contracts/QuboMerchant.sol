@@ -11,7 +11,7 @@ contract QuboMerchant is Ownable, ReentrancyGuard {
     address _CELO = 0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9;
     bool _customerReceived = false;
     bool _merchantSent = false;
-    string private _merchantName;
+    string public _merchantName;
 
     //Order ID = FileHash
     mapping(uint256 => string) public orderList;
@@ -25,6 +25,11 @@ contract QuboMerchant is Ownable, ReentrancyGuard {
 
     function addPurchase(uint256 payableAmount) public payable nonReentrant {
         require(msg.value == payableAmount, "Payable is not valid!");
+    }
+    
+    function withdraw() public onlyOwner nonReentrant {
+        (bool success, ) = msg.sender.call{value: address(this).balance}("");
+        require(success, "Withdraw failed.");
     }
 
     function balanceOf() public view returns (uint256){
