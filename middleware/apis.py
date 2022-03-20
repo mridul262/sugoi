@@ -3,7 +3,7 @@ from flask import request
 from flask import jsonify
 import json
 
-import dbinterface 
+import middleware.dbinterface as dbinterface
 
 app = Flask(__name__)
 
