@@ -33,25 +33,29 @@ const OrdersTable = (props: Props) => {
 					verticalAlign="middle"
 					align="left"
 				>
-					<Table.HeaderCell>Customer</Table.HeaderCell>
-					<Table.Cell dataKey="campaignName" />
+					<Table.HeaderCell>Id</Table.HeaderCell>
+					<Table.Cell dataKey="id" />
 				</Table.Column>
 
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
 					<Table.HeaderCell>Currency</Table.HeaderCell>
-					<StatusCell dataKey="status" />
+					<Table.Cell dataKey="currency_name" />
 				</Table.Column>
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Price</Table.HeaderCell>
-					<Table.Cell dataKey="startDate" />
+					<Table.HeaderCell>Merchant Address</Table.HeaderCell>
+					<Table.Cell dataKey="merchant_addr" />
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Product Id</Table.HeaderCell>
+					<Table.Cell dataKey="product_id" />
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Amount</Table.HeaderCell>
+					<Table.Cell dataKey="amount" />
 				</Table.Column>
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
 					<Table.HeaderCell>Expiry</Table.HeaderCell>
-					<Table.Cell dataKey="startDate" />
-				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Status</Table.HeaderCell>
-					<Table.Cell dataKey="startDate" />
+					<Table.Cell dataKey="expiry" />
 				</Table.Column>
 			</Table>
 		</section>
