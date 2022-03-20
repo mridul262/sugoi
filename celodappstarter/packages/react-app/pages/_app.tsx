@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps, router }: AppProps): React.ReactElement {
   return (
     <>
       <Head>
-        <title>Celo DApp Starter</title>
+        <title>Qubo</title>
         <meta name="description" content="Celo DApp Starter" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link
