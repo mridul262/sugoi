@@ -29,16 +29,30 @@ def create_merchant():
     dbinterface.create_merchant(name=merchant_data['name'], email=merchant_data['email'], wallet_addr=merchant_data['wallet_addr'])
     return get_success_response()
 
+def make_merchant_object(merchant_tuple):
+  return {
+    "id": merchant_tuple[0],
+    "name": merchant_tuple[1],
+    "email": merchant_tuple[2],
+    "wallet_addr": merchant_tuple[3],
+  }
+
+def make_currency_object(currency_tuple):
+  return {
+    "id": currency_tuple[0],
+    "name": currency_tuple[1],
+  }
+
 def make_order_object(order_tuple):
     return {
         "id":order_tuple[0],
         "amount":order_tuple[1],
         "status":order_tuple[2],
-        "currency": dbinterface.get_currency([("id", order_tuple[3])]),
-        "customer": dbinterface.get_customer([("id", order_tuple[4])]),
-        "merchant": dbinterface.get_merchant([("id", order_tuple[5])]) ,
+        "currency": make_currency_object(dbinterface.get_currency([("id", order_tuple[3])])),
+        "customer": make_customer_object(dbinterface.get_customer([("id", order_tuple[4])])),
+        "merchant": make_merchant_object(dbinterface.get_merchant([("id", order_tuple[5])])),
         "expiry": order_tuple[6],
-        "product": dbinterface.get_product([("id", order_tuple[7])]) 
+        "product": make_product_object(dbinterface.get_product([("id", order_tuple[7])]))
     }
 
 # GET requests
