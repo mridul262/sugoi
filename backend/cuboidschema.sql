@@ -9,8 +9,6 @@ create table if not exists merchants (
     id serial primary key,
     name varchar(256),
     email varchar(256),
-    mailing_addr varchar(256),
-    shipping_addr varchar(256),
     wallet_addr varchar(256) unique
 );
 
@@ -20,10 +18,6 @@ create table if not exists customers (
     id int primary key,
     merchant_id int references merchants (id),
     name varchar(256),
-    email varchar(256),
-    phone varchar(256),
-    mailing_addr varchar(256),
-    shipping_addr varchar(256),
     wallet_addr varchar(256) unique
 );
 
@@ -47,8 +41,8 @@ create table if not exists products (
 
 create sequence product_id_sequence start 1 increment 1;
 
-create table if not exists order(
-    id int primary_key,
+create table if not exists orders (
+    id int primary key,
     amount float,
     status varchar(256) default 'ACTIVE', 
     currency_id int references currency(id),

@@ -70,6 +70,32 @@ def get_table_row(table, wheres):
         cur.close()
         close_database_connection(conn)
 
+
+# wheres format is [(),(),()]
+def update_table_row(table, update_vals, wheres):
+    accum = "where "
+    for (column, value) in wheres:
+        accum = accum + f"{column}={value}" + " and "
+    where_clause = str.join(" ", accum.split()[:-1])
+    update_accum = ""
+    for (column, value) in update_vals:
+        update_accum = update_accum + f"{column}={value}" + " , "
+    set_clause = str.join(" ", accum.split()[:-1])
+    sql = f"update {table} set {set_clause} {where_clause}"
+    conn = get_connect_to_database()
+    cur = conn.cursor()
+    try:
+        cur.execute(sql)
+        cur.close()
+        conn.commit()
+        close_database_connection(conn)
+    except:
+        print(f"The query {sql} did not execute")
+        traceback.print_exc()
+        cur.close()
+        close_database_connection(conn)
+
+
 # wheres format is [(),(),()]
 def delete_table_row(table, wheres):
     accum = "where "
@@ -128,9 +154,14 @@ def delete_product(wheres):
 def create_order(id, amount, status, currency_id, customer_id, merchant_id, expiry):
     create_table_row("orders", (id, amount, status, currency_id, customer_id, merchant_id, expiry))
 
-def get_invoice(wheres):
+def get_orders(wheres):
     return get_table_row("orders", wheres)
 
+def close_order(id):
+    update_table_row("orders", [("status", "CLOSED")], [("id", id)])
+
+def refund_order(id):
+    update_table_row("orders", [("status", "REFUND")], [("id", id)])
 
 
 # create_merchant(2, "neil", "n@g.com", "home", "home", "PUTSHAHERE")
