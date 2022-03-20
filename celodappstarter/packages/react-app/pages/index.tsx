@@ -36,6 +36,18 @@ export default function App() {
 
   return (
     <div className={styles.checkoutWrapper}>
+				<div className={styles.backgroundWrapper}>
+					<div className={styles.background}>
+						<div className={styles.background__middle1}/>
+						<div className={styles.background__teal2Wrapper}>
+							<div className={styles.background__teal2}/>
+						</div>
+						<div className={styles.background__middle3}/>
+						<div className={styles.background__teal4Wrapper}>
+							<div className={styles.background__teal4}/>
+						</div>
+					</div>
+				</div>
       <ProductsDisplay products={PRODUCTS}/>
       <Checkout products={PRODUCTS} contractData={contracts?.QuboMerchant} />
     </div>
