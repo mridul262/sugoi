@@ -20,34 +20,29 @@ const CustomersTable = (props: Props) => {
 		<section className={styles.campaignTableWrapper}>
 			<Table
 				height={400}
-				id="campaignTable"
+				id='campaignTable'
 				data={campaigns}
 				hover={false}
 				onRowClick={(data: any) => {
 					console.log(data);
 				}}
 			>
-				<Table.Column
-					width={SMALL_WIDTH}
-					fixed
-					verticalAlign="middle"
-					align="left"
-				>
-					<Table.HeaderCell>Name</Table.HeaderCell>
-					<Table.Cell dataKey="campaignName" />
+				<Table.Column width={SMALL_WIDTH} fixed verticalAlign='middle' align='left'>
+					<Table.HeaderCell>Order ID</Table.HeaderCell>
+					<Table.Cell dataKey='id' />
 				</Table.Column>
 
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+				<Table.Column width={SMALL_WIDTH} verticalAlign='middle' align='left'>
 					<Table.HeaderCell>Email</Table.HeaderCell>
-					<StatusCell dataKey="status" />
+					<StatusCell dataKey='status' />
 				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+				<Table.Column width={SMALL_WIDTH} verticalAlign='middle' align='left'>
 					<Table.HeaderCell>Wallet Address</Table.HeaderCell>
-					<Table.Cell dataKey="startDate" />
+					<Table.Cell dataKey='startDate' />
 				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+				<Table.Column width={SMALL_WIDTH} verticalAlign='middle' align='left'>
 					<Table.HeaderCell>Created At</Table.HeaderCell>
-					<Table.Cell dataKey="endDate" />
+					<Table.Cell dataKey='endDate' />
 				</Table.Column>
 			</Table>
 		</section>

@@ -35,25 +35,8 @@ const CustomerPage = (props: any) => {
 
 		axios(config).then(async (res) => {
 			const fetchOrders = res.data;
-
-			const newOrders = await Promise.all(
-				fetchOrders.map(async (order: any) => {
-					const newOrder = order;
-					const { product_id: productId, merchant_id: merchantId } = order;
-
-					const productConfig: any = {
-						url: `https://cuboid-backend.herokuapp.com/products/${productId}`,
-						method: 'get',
-					};
-
-					const res = await axios(productConfig);
-
-					order.product = res.data;
-					return newOrder;
-				})
-			);
-			console.log(newOrders);
-			setOrders(newOrders);
+			console.log(fetchOrders);
+			setOrders(fetchOrders);
 		});
 	}, []);
 
