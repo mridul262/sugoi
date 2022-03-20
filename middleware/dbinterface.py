@@ -1,12 +1,18 @@
+import os
 import psycopg2
 import traceback
 
-DATABASE = 'cuboid'
-HOST = 'localhost'
-PORT = 5432
-USERNAME = 'postgres'
-PASSWORD = 'password'
+DATABASE = os.environ.get('DB_DATABASE') or 'cuboid'
+HOST = os.environ.get('DB_HOST') or 'localhost'
+PORT = os.environ.get('DB_PORT') or 5432
+USERNAME = os.environ.get('DB_USERNAME') or 'postgres'
+PASSWORD = os.environ.get('DB_PASSWORD') or 'password'
 
+print(DATABASE)
+print(HOST)
+print(PORT)
+print(USERNAME)
+print(PASSWORD)
 
 def get_connect_to_database():
     conn = psycopg2.connect(dbname=DATABASE, host=HOST, port=PORT, user=USERNAME, password=PASSWORD)
