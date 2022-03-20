@@ -33,21 +33,13 @@ const CustomersTable = (props: Props) => {
 					verticalAlign="middle"
 					align="left"
 				>
-					<Table.HeaderCell>Name</Table.HeaderCell>
-					<Table.Cell dataKey="campaignName" />
+					<Table.HeaderCell>Id</Table.HeaderCell>
+					<Table.Cell dataKey="id" />
 				</Table.Column>
 
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Email</Table.HeaderCell>
-					<StatusCell dataKey="status" />
-				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
 					<Table.HeaderCell>Wallet Address</Table.HeaderCell>
-					<Table.Cell dataKey="startDate" />
-				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Created At</Table.HeaderCell>
-					<Table.Cell dataKey="endDate" />
+					<Table.Cell dataKey="wallet_addr" />
 				</Table.Column>
 			</Table>
 		</section>

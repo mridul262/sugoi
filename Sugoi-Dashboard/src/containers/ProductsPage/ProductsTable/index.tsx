@@ -33,17 +33,29 @@ const ProductsTable = (props: Props) => {
 					verticalAlign="middle"
 					align="left"
 				>
-					<Table.HeaderCell>Name</Table.HeaderCell>
-					<Table.Cell dataKey="campaignName" />
+					<Table.HeaderCell>Product Name</Table.HeaderCell>
+					<Table.Cell dataKey="product_name" />
 				</Table.Column>
 
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Currency</Table.HeaderCell>
-					<StatusCell dataKey="status" />
+					<Table.HeaderCell>Id</Table.HeaderCell>
+					<Table.Cell dataKey="id" />
 				</Table.Column>
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Price</Table.HeaderCell>
-					<Table.Cell dataKey="startDate" />
+					<Table.HeaderCell>Value</Table.HeaderCell>
+					<Table.Cell dataKey="val" />
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Units</Table.HeaderCell>
+					<Table.Cell dataKey="units" />
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Currency Id</Table.HeaderCell>
+					<Table.Cell dataKey="currency_id" />
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Merchant Id</Table.HeaderCell>
+					<Table.Cell dataKey="merchant_id" />
 				</Table.Column>
 			</Table>
 		</section>

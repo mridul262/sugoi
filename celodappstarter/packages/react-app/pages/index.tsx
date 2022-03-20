@@ -16,14 +16,8 @@ interface TabPanelProps {
 const PRODUCTS = [
   {
     name: "Monkey #1000",
-    price: 10.00,
-    currency: "$CELO",
-    desc: 'Amazing monkey JPEG'
-  },
-  {
-    name: "Monkey #20",
-    price: 20.00,
-    currency: "$CELO",
+    price: 0.10,
+    currency: "CELO",
     desc: 'Amazing monkey JPEG'
   },
 ]
@@ -43,7 +37,7 @@ export default function App() {
   return (
     <div className={styles.checkoutWrapper}>
       <ProductsDisplay products={PRODUCTS}/>
-      <Checkout contractData={contracts?.Storage} />
+      <Checkout products={PRODUCTS} contractData={contracts?.QuboMerchant} />
     </div>
   );
 }
