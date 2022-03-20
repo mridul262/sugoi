@@ -40,6 +40,7 @@ def make_merchant_object(merchant_tuple):
 def make_currency_object(currency_tuple):
   return {
     "id": currency_tuple[0],
+    "name": currency_tuple[1],
   }
 
 def make_order_object(order_tuple):
@@ -47,11 +48,11 @@ def make_order_object(order_tuple):
         "id":order_tuple[0],
         "amount":order_tuple[1],
         "status":order_tuple[2],
-        "currency": make_currency_object(dbinterface.get_currency([("id", order_tuple[3])])),
-        "customer": make_customer_object(dbinterface.get_customer([("id", order_tuple[4])])),
-        "merchant": make_merchant_object(dbinterface.get_merchant([("id", order_tuple[5])])),
+        "currency": make_currency_object(dbinterface.get_currency([("id", order_tuple[3])])[0]),
+        "customer": make_customer_object(dbinterface.get_customer([("id", order_tuple[4])])[0]),
+        "merchant": make_merchant_object(dbinterface.get_merchant([("id", order_tuple[5])])[0]),
         "expiry": order_tuple[6],
-        "product": make_product_object(dbinterface.get_product([("id", order_tuple[7])]))
+        "product": make_product_object(dbinterface.get_product([("id", order_tuple[7])])[0])
     }
 
 # GET requests
