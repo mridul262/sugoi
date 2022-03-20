@@ -16,9 +16,11 @@ import TabsWrapper from '../../components/TabsWrapper';
 /* Data */
 import { campaigns } from '../../consts/brandCampaigns';
 import axios from 'axios';
+import CustomerTable from '../../containers/Customers/CustomersTable';
 
 const CustomerPage = (props: any) => {
 	const [selectedTabList, setSelectedTabList] = React.useState<number>(0);
+	const [orders, setOrders] = React.useState<Array<any>>([]);
 	const handleTabChange = (index: number) => {
 		setSelectedTabList(index);
 	};
@@ -26,10 +28,33 @@ const CustomerPage = (props: any) => {
 	useEffect(() => {
 		const customerId = props.match.params.id;
 
-		const res = axios({
+		const config: any = {
 			url: `https://cuboid-backend.herokuapp.com/customers/${customerId}/orders`,
 			method: 'get',
-		}).then((res) => console.log(res.data));
+		};
+
+		axios(config).then(async (res) => {
+			const fetchOrders = res.data;
+
+			const newOrders = await Promise.all(
+				fetchOrders.map(async (order: any) => {
+					const newOrder = order;
+					const { product_id: productId, merchant_id: merchantId } = order;
+
+					const productConfig: any = {
+						url: `https://cuboid-backend.herokuapp.com/products/${productId}`,
+						method: 'get',
+					};
+
+					const res = await axios(productConfig);
+
+					order.product = res.data;
+					return newOrder;
+				})
+			);
+			console.log(newOrders);
+			setOrders(newOrders);
+		});
 	}, []);
 
 	return (
@@ -56,12 +81,12 @@ const CustomerPage = (props: any) => {
 					tabsDisplayList={['All', 'Current']}
 				>
 					<TabPanel>
-						<CustomersTable campaigns={campaigns} />
+						<CustomerTable campaigns={orders} />
 					</TabPanel>
 
-					<TabPanel>
+					{/* <TabPanel>
 						<CustomersTable campaigns={campaigns} />
-					</TabPanel>
+					</TabPanel> */}
 				</TabsWrapper>
 			</main>
 		</>
