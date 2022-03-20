@@ -13,8 +13,8 @@ export default function ProductsDisplay(props: Props) {
   return (
       <div className={styles.productsDisplay}>
         <div className={styles.productsDisplayWrapper}>
-          <span className={styles.merchantName}>Pay BAYC</span>
-          <span className={styles.totalPrice}>${totalPrice}</span>
+          <span className={styles.merchantName}>Paying BAYC</span>
+          <span className={styles.totalPrice}>{totalPrice} CELO</span>
           <div className={styles.products}>
             {products.map((product, index) => (
               <div 
@@ -28,7 +28,7 @@ export default function ProductsDisplay(props: Props) {
                     <span className={styles.desc}>{product.desc}</span>
                   </div>
                 </div>
-                <span className={styles.price}>{product.currency} {product.price}</span>
+                <span className={styles.price}>{product.price.toFixed(2)} {product.currency}</span>
               </div>
             ))}
           </div>

@@ -20,9 +20,10 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log: true,
   });
 
-  await deploy("Storage", {
+  await deploy("QuboMerchant", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
+    args: ['adfadfadfasdf'],
     //args: [ "Hello", ethers.utils.parseEther("1.5") ],
     log: true,
   });
@@ -59,4 +60,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
 };
 
-module.exports.tags = ["Greeter", "Storage"];
+module.exports.tags = ["Greeter", "QuboMerchant"];

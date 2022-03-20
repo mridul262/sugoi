@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/QuboMerchant.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n// import \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\n// import \"@openzeppelin/contracts/access/Ownable.sol\";\n// import \"@openzeppelin/contracts/security/ReentrancyGuard.sol\";\n\n\n// contract QuboMerchant is Ownable, ReentrancyGuard {\ncontract QuboMerchant {\n    address _CELO = 0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9;\n    bool _customerReceived = false;\n    bool _merchantSent = false;\n    string public _merchantName;\n    uint256 orderCount = 0;\n\n    struct OrderDetails {\n        uint256 orderID;\n        uint256 productID;\n        address customerAddress;\n        address merchantAddress;\n        uint256 orderAmount;\n        uint expiryDate;\n        string orderStatus; // Active Closed Refunded\n    }\n\n    mapping(uint256 => OrderDetails) public orderList;\n    mapping(uint256 => bytes32) public ordersHash;\n\n    constructor(string memory merchantName) {\n        // require(merchantName =! \"\", \"Merchant name is blank\");\n        _merchantName = merchantName;\n    }\n\n    // function addPurchase(uint256 payableAmount, uint256 productID) public payable nonReentrant returns (OrderDetails memory) {\n    function addPurchase(uint256 payableAmount, uint256 productID) public payable returns (OrderDetails memory) {\n        require(msg.value == payableAmount, \"Payable is not valid!\");\n        OrderDetails memory orderDetails = OrderDetails(orderCount + 1, productID, msg.sender, address(this), payableAmount, 1, \"Active\"); //block timestamp not done\n        orderCount++;\n        orderList[orderCount] = orderDetails;\n        // ordersHash[orderCount] = abi.encodePacked(orderDetails);\n        return orderDetails;\n    }\n\n    function sign(uint256 orderID, bytes32 ordersHash) public returns (OrderDetails memory) {\n        require(keccak256(bytes(orderList[orderID].orderStatus)) != keccak256(bytes(\"Closed\")), \"Customer has already received!\");\n        // require(keccak256(ordersHash) == keccak256(abi.encodePacked(orderList[orderID])), \"Order details tampered!\");\n        orderList[orderID].orderStatus = \"Closed\";\n        // ordersHash[orderID] = abi.encodePacked(orderList[orderID]);\n        // require(ERC20(_CELO).transferFrom(address(this), orderList[orderID].customerAddress, orderList[orderID].orderAmount), \"Error with transferring!\");\n        return orderList[orderID];\n    } \n\n    function release(uint256 orderID) public returns (OrderDetails memory) {\n        return orderList[orderID];\n    }\n\n    function refund(uint256 orderID) public returns (OrderDetails memory) {\n        return orderList[orderID];\n    }\n\n    // function withdraw() public onlyOwner nonReentrant {\n    function withdraw() public {\n        (bool success, ) = msg.sender.call{value: address(this).balance}(\"\");\n        require(success, \"Withdraw failed!\");\n        \n    }\n\n    function balanceOf() public view returns (uint256){\n        return address(this).balance;\n    }\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
