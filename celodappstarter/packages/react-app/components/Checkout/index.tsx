@@ -6,9 +6,10 @@ import { useContractKit } from "@celo-tools/use-contractkit";
 import { useEffect, useState } from "react";
 import { SnackbarAction, useSnackbar } from "notistack";
 import { truncateAddress } from "@/utils";
-import { Storage } from "../../hardhat/types/Storage";
+import { Storage } from "../../../hardhat/types/Storage";
 import { useQuery, gql } from "@apollo/client";
-
+import styles from "./index.module.scss";
+import ConnectWalletButton from '../ConnectWalletButton';
 // The Graph query endpoint is defined in ../apollo-client.js
 
 // Example GraphQL query for the Storage contract updates
@@ -24,8 +25,9 @@ const QUERY = gql`
 `;
 
 
-export function StorageContract({ contractData }) {
+export default function Checkout({ contractData }) {
   const { kit, address, network, performActions } = useContractKit();
+  const [balanceValue, setBalanceValue] = useState(0);
   const [storageValue, setStorageValue] = useState<string | null>(null);
   const [storageInput, setStorageInput] = useInput({ type: "text" });
   const [contractLink, setContractLink] = useState<string | null>(null);
@@ -100,42 +102,48 @@ export function StorageContract({ contractData }) {
     }
   };
 
+  const getBalance = async () => {
+    try {
+      const result = (await contract.methods.balanceOf().call()) as number;
+      setBalanceValue(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  React.useEffect(() => {
+    if (contract) {
+      getStorage();
+      getBalance();
+    }
+  }, [contract]);
+  
   return (
-    <Grid sx={{ m: 1 }} container justifyContent="center">
-      <Grid item sm={6} xs={12} sx={{ m: 2 }}>
-        <Typography variant="h5" component="div">
-          Storage Contract:
-        </Typography>
-        {contractData ? (
-          <Link href={contractLink} target="_blank">
-            {truncateAddress(contractData?.address)}
-          </Link>
-        ) : (
-          <Typography component="div">
-            No contract detected for {network.name}
-          </Typography>
-        )}
+    <div className={styles.checkoutWrapper}>
+        <h2>
+          Connect Wallet
+        </h2>
+        <ConnectWalletButton/>
         <Divider component="div" sx={{ m: 1 }} />
 
-        <Typography variant="h6" component="div">
+        <h2>
           Write Contract
-        </Typography>
+        </h2>
         <Box sx={{ m: 1, marginLeft: 0 }}>{setStorageInput}</Box>
         <Button sx={{ m: 1, marginLeft: 0 }} variant="contained" onClick={setStorage}>
           Update Storage Contract
         </Button>
         <Divider component="div" sx={{ m: 1 }} />
 
-        <Typography variant="h6" component="div">
+        <h2>
           Read Contract
-        </Typography>
+        </h2>
         <Typography sx={{ m: 1, marginLeft: 0, wordWrap: "break-word" }} component="div">
           Storage Contract Value: {storageValue}
         </Typography>
         <Button sx={{ m: 1, marginLeft: 0 }} variant="contained" onClick={getStorage}>
           Read Storage Contract
         </Button>
-      </Grid>
-    </Grid>
+    </div>
   );
 }

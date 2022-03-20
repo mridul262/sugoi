@@ -1,3 +1,3 @@
-export * from './ButtonAppBar'
-export * from './StorageContract'
+export * from './ConnectWalletButton'
+export * from './Checkout'
 export * from './GreeterContract'

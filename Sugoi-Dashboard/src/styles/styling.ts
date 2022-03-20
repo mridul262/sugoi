@@ -87,7 +87,7 @@ export const Layout = styled('main', {
 	maxWidth: '170rem',
 	minHeight: '100%',
 	margin: '0 auto',
-	padding: '6rem 3rem',
+	padding: '6rem 4rem',
 	paddingBottom: '10rem',
 
 	// Media queries
@@ -98,10 +98,10 @@ export const Layout = styled('main', {
 	variants: {
 		hideNavBar: {
 			true: {
-				paddingLeft: '0'
+				paddingTop: '0'
 			},
 			false: {
-				paddingLeft: '12rem'
+				paddingTop: '9rem'
 			}
 		}
 	}

@@ -2,53 +2,50 @@
 @import '../../styles/guidelines.scss';
 
 .brandNav {
-	background-color: $teal_0;
+	// background-color: $teal1;
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100%;
-	padding: 2rem 0;
-	width: 8rem;
+	width: 100%;
+	margin-top: 3.5rem;
+	height: 3rem;
+	padding: 2rem 4rem;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
 	box-shadow: $box_shadow_1;
 	z-index: 20000 !important;
 }
 
 .brandNavOptions {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-right: 6rem;
 }
 
 .logo {
-	font-size: 42px;
+	font-size: 18px;
 	text-align: center;
 	font-weight: $fontweight_bold;
-	margin-bottom: 4rem;
 }
 
-.active {
-	color: $teal_9 !important;
-}
-
-.icon {
-	margin-left: -5px;
-	font-size: 32px;
-	color: $grey_7;
-}
-
-.iconBox {
-	border-left: 5px solid transparent;
-	height: 6rem;
-	margin-bottom: 1rem;
+.navOption {
+	margin-right: 1rem;
+	padding: 2px 18px;
+	border-radius: 40px;
+	color: $teal11;
+	font-weight: $fontweight_semibold;
+	animation:cubic-bezier(1, 0, 0, 1) 0.3s;
 
 	&:hover {
-		background-color: $teal_1;
+		background-color: $teal4;
 	}
 
 	&_selected {
-		border-left: 5px solid $teal_9;
+		background-color: $teal9 !important;
+		color: $prim_white;
 	}
 }

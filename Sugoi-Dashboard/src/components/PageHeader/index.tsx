@@ -18,8 +18,9 @@ const PageHeader = (props: Props) => {
 			<Helmet>
 				<title>Hashtap - {title}</title>
 			</Helmet>
-
+ 
 			<div className="page-header">
+				<p> Sugoi </p>
 				<Nav />
 				{breadcrumb && breadcrumb.length && (
 					<BreadCrumb sections={breadcrumb} />

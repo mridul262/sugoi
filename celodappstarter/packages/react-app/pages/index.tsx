@@ -1,8 +1,11 @@
 import * as React from "react";
+import styles from './index.module.scss';
 import { Tabs, Tab, Typography, Box, Link } from "@mui/material";
 import deployedContracts from "../../hardhat/deployments/hardhat_contracts.json";
 import { useContractKit } from "@celo-tools/use-contractkit";
-import { StorageContract, GreeterContract, ButtonAppBar } from "@/components";
+import ConnectWalletButton from '../components/ConnectWalletButton'
+import ProductsDisplay from "../components/ProductsDisplay";
+import Checkout from "../components/Checkout";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -10,6 +13,20 @@ interface TabPanelProps {
   value: number;
 }
 
+const PRODUCTS = [
+  {
+    name: "Monkey #1000",
+    price: 10.00,
+    currency: "$CELO",
+    desc: 'Amazing monkey JPEG'
+  },
+  {
+    name: "Monkey #20",
+    price: 20.00,
+    currency: "$CELO",
+    desc: 'Amazing monkey JPEG'
+  },
+]
 export default function App() {
   const { network } = useContractKit();
   const [value, setValue] = React.useState(0);
@@ -24,22 +41,9 @@ export default function App() {
     ]?.contracts;
 
   return (
-    <div>
-      <ButtonAppBar />
-      <Box sx={{ width: "100%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs">
-            <Tab label="Storage Contract" {...a11yProps(0)} />
-            <Tab label="Greeter Contract" {...a11yProps(1)} />
-          </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-          <StorageContract contractData={contracts?.Storage} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <GreeterContract contractData={contracts?.Greeter} />
-        </TabPanel>
-      </Box>
+    <div className={styles.checkoutWrapper}>
+      <ProductsDisplay products={PRODUCTS}/>
+      <Checkout contractData={contracts?.Storage} />
     </div>
   );
 }

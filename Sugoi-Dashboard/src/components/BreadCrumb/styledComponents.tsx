@@ -4,7 +4,6 @@ export const StyledBreadCrumbs = styled('div', {
 	display: 'flex',
 	flexDirection: 'row',
 	alignItems: 'center',
-	marginTop: '1rem',
 	fontWeight: '$bold',
 
 	div: {
