@@ -1,10 +1,9 @@
 /* eslint-disable react/state-in-constructor */
 // Basic Imports
-import React, {useEffect} from 'react';
-import axios from 'axios'
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { TabPanel } from 'react-tabs';
-
 
 /* Styles */
 import styles from './index.module.scss';
@@ -22,34 +21,39 @@ const CustomersPage = () => {
 	const [selectedTabList, setSelectedTabList] = React.useState<number>(0);
 	const [userData, setUserData] = React.useState<any>();
 	useEffect(() => {
-		axios.get('/customers').then((res) => {setUserData(res); console.log(userData)}).catch((err)=> {console.log(err)})
-		console.log(userData)
-	  }, []);
+		axios
+			.get('/customers')
+			.then((res) => {
+				setUserData(res);
+				console.log(userData);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		console.log(userData);
+	}, []);
 	const handleTabChange = (index: number) => {
 		setSelectedTabList(index);
 	};
 	return (
 		<>
-			<main className="page-container">
+			<main className='page-container'>
 				<PageHeader
-					title="Customers"
-					breadcrumb={[
-						{ content: 'Home', to: '/' },
-						{ content: 'Customers' }
-					]}
-					callToAction=""
+					title='Customers'
+					breadcrumb={[{ content: 'Home', to: '/' }, { content: 'Customers' }]}
+					callToAction=''
 				/>
 				<div className={styles.campaignPageHeaderRow}>
 					<h2 className={styles.pageTitle}> Customers </h2>
 					<div className={styles.buttonsRow}>
 						<CTAButton
-							colorScheme="brand"
-							type="secondary"
-							size="tiny"
-							to="/brand/campaigns/new"
+							colorScheme='brand'
+							type='secondary'
+							size='tiny'
+							to='/brand/campaigns/new'
 							disabled
 						>
-							<i className="bx bxs-download"></i>
+							<i className='bx bxs-download'></i>
 							Export
 						</CTAButton>
 {/* 

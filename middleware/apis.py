@@ -92,7 +92,7 @@ def create_purchase():
     customer_id = str(get_customer_id(order_data["customer_addr"]))
     currency_id = str(get_currency_id(order_data["currency_name"]))
     merchant_id = str(get_merchant_id(order_data["merchant_addr"]))
-    dbinterface.create_order(id=str(order_data['id']), amount=order_data['amount'], status=order_data['status'], 
+    dbinterface.create_order(id=str(order_data['id']), amount=str(order_data['amount']), status=order_data['status'], 
                             currency_id=currency_id, customer_id=customer_id, 
                             merchant_id=merchant_id, expiry=order_data['expiry'], product_id=str(order_data['product_id']))
     return get_success_response()

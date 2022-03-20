@@ -9,14 +9,13 @@ import styles from './index.module.scss';
 
 /* Components */
 import PageHeader from '../../components/PageHeader';
-import CustomersTable from '../../containers/Customers/CustomersTable';
 import CTAButton from '../../components/CTAButton';
 import TabsWrapper from '../../components/TabsWrapper';
 
 /* Data */
 import { campaigns } from '../../consts/brandCampaigns';
 import axios from 'axios';
-import CustomerTable from '../../containers/Customers/CustomersTable';
+import CustomerTable from '../../containers/Customer/CustomerTable';
 
 const CustomerPage = (props: any) => {
 	const [selectedTabList, setSelectedTabList] = React.useState<number>(0);
@@ -35,7 +34,6 @@ const CustomerPage = (props: any) => {
 
 		axios(config).then(async (res) => {
 			const fetchOrders = res.data;
-			console.log(fetchOrders);
 			setOrders(fetchOrders);
 		});
 	}, []);
