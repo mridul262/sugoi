@@ -1,0 +1,11 @@
+@import '../styles/guidelines.scss';
+
+.checkoutWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 100px;
+    height: 95vh;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}

@@ -50,20 +50,6 @@ function MyApp({ Component, pageProps, router }: AppProps): React.ReactElement {
               {typeof window === "undefined" ? null : (
                 <Component {...pageProps} />
               )}
-              <footer style={{ textAlign: "center" }}>
-                <Link
-                  href="https://github.com/celo-org/celo-progressive-dapp-starter"
-                  target="_blank"
-                >
-                  <Github style={{width: "40px", margin: "5px"}}/>
-                </Link>
-                <Link
-                  href="https://discord.gg/cGCE9p9352"
-                  target="_blank"
-                >
-                  <Discord style={{width: "40px", margin: "5px"}}/>
-                </Link>
-              </footer>
             </div>
           </ApolloProvider>
         </SnackbarProvider>

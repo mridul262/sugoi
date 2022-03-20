@@ -8,19 +8,21 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import { useContractKit } from "@celo-tools/use-contractkit";
 import { truncateAddress, getWindowDimensions } from '@/utils'
+import styles from './index.module.scss'
 
-export function ButtonAppBar() {
+export default function ButtonAppBar() {
   const { address, network, connect, destroy } = useContractKit();
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar sx={{ gap: 2 }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Celo Dapp Starter
-          </Typography>
-          {network && <Chip label={network.name} color="secondary" />}
+      <div className={styles.connectWallet}>
+          {network && 
+            <Chip 
+              label={network.name} 
+              color="secondary" 
+              className={styles.network}
+            />}
           {address && (
             <>
               <Chip
@@ -45,8 +47,7 @@ export function ButtonAppBar() {
               Connect wallet
             </Button>
           )}
-        </Toolbar>
-      </AppBar>
+      </div>
     </Box>
   );
 }

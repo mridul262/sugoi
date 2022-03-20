@@ -1,0 +1,80 @@
+@import '../../styles/guidelines.scss';
+
+.productsDisplay {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 80%;
+    border-right: 2px solid $sage6;
+    position: relative;
+}
+
+.productsDisplayWrapper {
+    width: calc(100% - 200px);
+    padding-left: 150px;
+    padding-right: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.merchantName {
+    color: $sage10;
+    font-weight: $fontweight_semibold;
+    font-size: 16px;
+}
+
+.totalPrice {
+    font-size: 42px;
+    color: $teal12;
+    font-weight: $fontweight_semibold;
+}
+
+.products {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.product {
+    width: 100%;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .productImageText {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+        height: 50px;
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 7px;
+        }
+
+        .productTitle {
+            display: flex;
+            flex-direction: column;
+            margin-left: 18px;
+
+            .name {
+                font-size: 16px;
+            }
+            .desc {
+                font-size: 12px;
+                font-weight: $fontweight_medium;
+                color: $sage11;
+            }
+        }
+    }
+
+    .price {
+        font-size: 16px;
+        font-weight: $fontweight_semibold;
+        color: $sage11;
+    }
+}
