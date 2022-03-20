@@ -27,8 +27,6 @@ def create_values_string(value):
     accum_string = accum_string + ")"
     return accum_string
 
-print(create_values_string(("nextval('customer_id_sequence')", "merchant_id", "name", "wallet_addr")))
-
 # CRUD for Merchants, Customers, Currency, Products, Transactions, Invoices
 def create_table_row(table, value):
     values_string = create_values_string(value)
@@ -53,7 +51,7 @@ def get_table_row(table, wheres):
     for (column, value) in wheres:
         accum = accum + f"{column}={value}" + " and "
     where_clause = str.join(" ", accum.split()[:-1])
-    sql = f"select {table} from {table} {where_clause};"
+    sql = f"select * from {table} {where_clause};"
     print(sql)
     conn = get_connect_to_database()
     cur = conn.cursor()
@@ -80,7 +78,8 @@ def update_table_row(table, update_vals, wheres):
     update_accum = ""
     for (column, value) in update_vals:
         update_accum = update_accum + f"{column}={value}" + " , "
-    set_clause = str.join(" ", accum.split()[:-1])
+    set_clause = str.join(" ", update_accum.split()[:-1])
+    print(set_clause)
     sql = f"update {table} set {set_clause} {where_clause}"
     conn = get_connect_to_database()
     cur = conn.cursor()
@@ -127,8 +126,8 @@ def delete_merchant(wheres):
     delete_table_row("merchants", wheres)
 
 # Customer Object is (id, merchant_id, name, email, phone, mailing_addr, shipping_addr)
-def create_customer(merchant_id, name, wallet_addr):
-    create_table_row("customers", ("nextval('customer_id_sequence')", merchant_id, name, wallet_addr))
+def create_customer(wallet_addr):
+    create_table_row("customers", ("nextval('customer_id_sequence')", wallet_addr))
 
 def get_customer(wheres):
     return get_table_row("customers", wheres)
@@ -151,19 +150,21 @@ def delete_product(wheres):
     delete_table_row("products", wheres)
 
 # Invoice Object is (id, amount, status, currency_id, customer_id, merchant_id, expiry)
-def create_order(id, amount, status, currency_id, customer_id, merchant_id, expiry):
-    create_table_row("orders", (id, amount, status, currency_id, customer_id, merchant_id, expiry))
+def create_order(id, amount, status, currency_id, customer_id, merchant_id, expiry, product_id):
+    create_table_row("orders", (id, amount, status, currency_id, customer_id, merchant_id, expiry, product_id))
 
 def get_orders(wheres):
     return get_table_row("orders", wheres)
 
 def close_order(id):
-    update_table_row("orders", [("status", "CLOSED")], [("id", id)])
+    update_table_row("orders", [("status", "'CLOSED'")], [("id", id)])
 
 def refund_order(id):
-    update_table_row("orders", [("status", "REFUND")], [("id", id)])
+    update_table_row("orders", [("status", "'REFUND'")], [("id", id)])
 
 
 # create_merchant(2, "neil", "n@g.com", "home", "home", "PUTSHAHERE")
 # print(get_merchant([("id", 2)]))
 # delete_merchant([("id", 2)])
+
+# print(get_currency([("name", "'USD'")]))

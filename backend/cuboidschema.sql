@@ -4,7 +4,6 @@ create table if not exists master_wallet (
     wallet_addr varchar(256) primary key
 );
 
-
 create table if not exists merchants (
     id serial primary key,
     name varchar(256),
@@ -16,8 +15,6 @@ create sequence merchant_id_sequence start 1 increment 1;
 
 create table if not exists customers (
     id int primary key,
-    merchant_id int references merchants (id),
-    name varchar(256),
     wallet_addr varchar(256) unique
 );
 
@@ -48,5 +45,6 @@ create table if not exists orders (
     currency_id int references currency(id),
     customer_id int references customers(id),
     merchant_id int references merchants(id),
-    expiry timestamp
+    expiry timestamp,
+    product_id int references products(id)
 );
