@@ -22,7 +22,7 @@ const OrdersPage = () => {
 	const [selectedTabList, setSelectedTabList] = React.useState<number>(0);
 	const [userData, setUserData] = React.useState<any>();
 	useEffect(() => {
-		axios.get('/merchants/1/orders').then((res) => {setUserData(res); console.log(userData)}).catch((err)=> {console.log(err)})
+		axios.get('/merchants/3/orders').then((res) => {setUserData(res); console.log(userData)}).catch((err)=> {console.log(err)})
 		console.log(userData)
 	  }, []);
 	const handleTabChange = (index: number) => {
@@ -53,7 +53,7 @@ const OrdersPage = () => {
 							Export
 						</CTAButton>
 
-						<CTAButton
+						{/* <CTAButton
 							colorScheme="brand"
 							type="primary"
 							size="tiny"
@@ -61,7 +61,7 @@ const OrdersPage = () => {
 						>
 							<i className="bx bx-plus"></i>
 							Create New
-						</CTAButton>
+						</CTAButton> */}
 					</div>
 				</div>
 				<TabsWrapper

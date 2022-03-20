@@ -39,10 +39,9 @@ export const CustomRoute = (props: RouteProps) => {
 const BaseRouter = () => (
 	<Router history={history}>
 		<Switch>
-			<CustomRoute exact path='/' component={BrandCampaignListPage} />
+			<CustomRoute exact path='/' component={OrdersPage} />
 			<CustomRoute exact path='/customers' component={CustomersPage} />
 			<CustomRoute exact path='/products' component={ProductsPage} />
-			<CustomRoute exact path='/orders' component={OrdersPage} />
 			<CustomRoute path='/customer/:id' component={CustomerPage} />
 		</Switch>
 	</Router>

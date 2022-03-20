@@ -2,21 +2,24 @@ import { styled } from '@stitches/react';
 
 export const Input = styled('div', {
 	objectFit: 'contain',
-
+	div: {
+		fontWeight: '600',
+	},
 	input: {
+		marginBottom: '18px',
 		background: 'none',
 		border: 'none',
-		borderBottom: '2px solid $teal6',
+		borderBottom: '2px solid $sage6',
 		padding: '1rem',
 		// fontSize: '$content18',
 		color: '$teal12 !important',
 		'&:focus': {
 			outline: 'none',
-			border: '1px solid $teal8',
+			border: '1px solid $sage8',
 			borderRadius: '7px'
 		},
 		'::placeholder': {
-			color: '$teal9'
+			color: '$sage9'
 		}
 	},
 

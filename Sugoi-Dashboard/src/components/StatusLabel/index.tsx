@@ -4,7 +4,7 @@ import React from 'react';
 import { StyledLabel } from './styledComponents';
 
 interface Props {
-	status: 'ACTIVE' | 'IN_PROGRESS' | 'COMPLETED';
+	status: 'Active' | 'Closed' | 'Refund';
 	className?: string;
 }
 

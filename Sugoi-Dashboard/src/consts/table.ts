@@ -1,4 +1,4 @@
-export const SMALL_WIDTH = 150;
+export const SMALL_WIDTH = 100;
 export const MEDIUM_WIDTH = 300;
 export const BIG_WIDTH = 450;
 

@@ -52,7 +52,7 @@ const CustomersPage = () => {
 							<i className="bx bxs-download"></i>
 							Export
 						</CTAButton>
-
+{/* 
 						<CTAButton
 							colorScheme="brand"
 							type="primary"
@@ -61,19 +61,14 @@ const CustomersPage = () => {
 						>
 							<i className="bx bx-plus"></i>
 							Create New
-						</CTAButton>
+						</CTAButton> */}
 					</div>
 				</div>
 				<TabsWrapper
 					handleTabChange={handleTabChange}
 					selectedTab={selectedTabList}
-					tabsDisplayList={['All', 'Current']}
+					tabsDisplayList={['All']}
 				>
-					{console.log(userData)}
-					{userData?.data && (<TabPanel>
-						<CustomersTable campaigns={userData.data} />
-					</TabPanel>)}
-
 					{userData?.data && (<TabPanel>
 						<CustomersTable campaigns={userData.data} />
 					</TabPanel>)}

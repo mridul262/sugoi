@@ -30,7 +30,7 @@ const Nav = () => {
 				`}
 				onClick={() => handleChangePage('/')}
 			>
-				Home
+				Orders
 			</button>
 			<button
 				className={`
@@ -49,15 +49,6 @@ const Nav = () => {
 				onClick={() => handleChangePage('/customers')}
 			>
 				Customers
-			</button>
-			<button
-				className={`
-					${styles.navOption}
-					${history.location.pathname === '/orders' && styles.navOption_selected}
-				`}
-				onClick={() => handleChangePage('/orders')}
-			>
-				Orders
 			</button>
 		</section>
 	);

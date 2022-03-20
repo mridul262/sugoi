@@ -20,7 +20,7 @@ const PageHeader = (props: Props) => {
 			</Helmet>
  
 			<div className="page-header">
-				<p> Sugoi </p>
+				<p> Qubo </p>
 				<Nav />
 				{breadcrumb && breadcrumb.length && (
 					<BreadCrumb sections={breadcrumb} />

@@ -2,7 +2,7 @@ import { styled, css } from '@stitches/react';
 
 export const Popup = styled('div', {
 	opacity: '1',
-	width: '80vw',
+	width: '700px',
 	height: '100vh',
 	zIndex: '9999999 !important',
 	position: 'absolute !important',

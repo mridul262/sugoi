@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'rsuite';
+import { Placeholder, Table } from 'rsuite';
 import { SMALL_WIDTH } from '../../../consts/table';
 
 /* Components */
@@ -13,6 +13,7 @@ import 'rsuite/dist/styles/rsuite-default.css';
 
 interface Props {
 	campaigns: any[];
+	loading?: boolean;
 }
 const ProductsTable = (props: Props) => {
 	const { campaigns } = props;
@@ -26,36 +27,33 @@ const ProductsTable = (props: Props) => {
 				onRowClick={(data: any) => {
 					console.log(data);
 				}}
+				loading={props.loading}
 			>
 				<Table.Column
 					width={SMALL_WIDTH}
 					fixed
 					verticalAlign="middle"
-					align="left"
+					align="center"
 				>
 					<Table.HeaderCell>Product Name</Table.HeaderCell>
 					<Table.Cell dataKey="product_name" />
 				</Table.Column>
 
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="center">
 					<Table.HeaderCell>Id</Table.HeaderCell>
 					<Table.Cell dataKey="id" />
 				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="center">
 					<Table.HeaderCell>Value</Table.HeaderCell>
 					<Table.Cell dataKey="val" />
 				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="center">
 					<Table.HeaderCell>Units</Table.HeaderCell>
 					<Table.Cell dataKey="units" />
 				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Currency Id</Table.HeaderCell>
-					<Table.Cell dataKey="currency_id" />
-				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
-					<Table.HeaderCell>Merchant Id</Table.HeaderCell>
-					<Table.Cell dataKey="merchant_id" />
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left" flexGrow={1}>
+					<Table.HeaderCell>Currency </Table.HeaderCell>
+					<Table.Cell dataKey="currency" />
 				</Table.Column>
 			</Table>
 		</section>

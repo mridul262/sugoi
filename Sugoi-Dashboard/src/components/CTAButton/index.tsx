@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Loader } from 'rsuite';
 
 /* Styles */
 import { Button } from './styledComponents';
@@ -13,10 +14,11 @@ interface Props {
 	onClick?: () => any;
 	to?: string;
 	className?: string;
+	loading?: boolean;
 }
 
 const CTAButton = (props: Props) => {
-	const { colorScheme, type, size, children, onClick, to, disabled, className } = props;
+	const { colorScheme, loading, type, size, children, onClick, to, disabled, className } = props;
 
 	if (to) {
 		return (
@@ -29,6 +31,7 @@ const CTAButton = (props: Props) => {
 	} else {
 		return (
 			<Button color={`${colorScheme}${type}`} size={size} onClick={onClick} className={className}>
+				{loading && <><Loader/>&nbsp;&nbsp;&nbsp;</>}
 				{children}
 			</Button>
 		);

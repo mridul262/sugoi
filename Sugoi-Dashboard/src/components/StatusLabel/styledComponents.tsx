@@ -7,6 +7,7 @@ export const StyledLabel = styled('div', {
 	borderRadius: '4px',
 	fontSize: '8px',
 	color: '$sage1',
+	marginLeft: '2.5rem',
 	width: 'max-content',
 	height: '18px',
 	padding: '2px 12px',
@@ -14,13 +15,13 @@ export const StyledLabel = styled('div', {
 
 	variants: {
 		status: {
-			ACTIVE: {
+			Active: {
 				background: '$systemGreen'
 			},
-			IN_PROGRESS: {
+			Closed: {
 				background: '$systemOrange'
 			},
-			COMPLETED: {
+			Refund: {
 				background: '$sage9'
 			}
 		}
