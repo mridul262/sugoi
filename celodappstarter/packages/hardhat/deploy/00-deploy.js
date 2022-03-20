@@ -16,21 +16,13 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
   await deploy("QuboMerchant", {
     from: deployer,
-    args: ["xupeng"],
+    args: ["xupeng", '0x667C2c3E6c0b3fDa899c62CF065Ef4c73FE99C02'],
     log: true,
   });
 
   await deploy("Greeter", {
     from: deployer,
     args: ["hello world"],
-    log: true,
-  });
-
-  await deploy("QuboMerchant", {
-    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
-    from: deployer,
-    args: ['adfadfadfasdf'],
-    //args: [ "Hello", ethers.utils.parseEther("1.5") ],
     log: true,
   });
 

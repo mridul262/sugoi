@@ -48,7 +48,7 @@ export default function Checkout({ contractData, products }) {
   }, [network, contractData]);
 
   const setStorage = async () => {
-    const productId = 99;
+    const productId = 1;
     try {
       await performActions(async (kit) => {
         contract.once("purchaseRegistered", function(error, event) {
@@ -59,9 +59,10 @@ export default function Checkout({ contractData, products }) {
           payload['merchant_addr'] = arrayReturnData['merchantAddress'];
           payload['amount'] = hexNumberToInteger(arrayReturnData['orderAmount']);
           payload['status'] = arrayReturnData['orderStatus'];
-          payload['expiry'] = arrayReturnData['expiryDate'];
+          payload['expiry'] = new Date(parseInt(arrayReturnData['expiryDate']) * 1000).toLocaleString();
           payload['product_id'] = arrayReturnData['productID'];
-          const url = 'https://cuboid-backend.herokuapp.com/';
+          payload['currency_name'] = 'CELO'
+          const url = 'https://cuboid-backend.herokuapp.com/customers/purchase';
           axios.post(url, payload);
         });
 
