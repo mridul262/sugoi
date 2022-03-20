@@ -12,24 +12,65 @@ contract QuboMerchant is Ownable, ReentrancyGuard {
     bool _customerReceived = false;
     bool _merchantSent = false;
     string public _merchantName;
+    uint256 orderCount = 0;
 
-    //Order ID = FileHash
-    mapping(uint256 => string) public orderList;
-    //Order ID = Boolean
-    mapping(uint256 => bool) public orderStatus;
+    event purchaseRegistered(OrderDetails _detail);
+    event orderSigned(OrderDetails _detail);
+    event orderReleased(OrderDetails _detail);
+    event orderRefunded(OrderDetails _detail);
+
+    struct OrderDetails {
+        uint256 orderID;
+        uint256 productID;
+        address customerAddress;
+        address merchantAddress;
+        uint256 orderAmount;
+        uint expiryDate;
+        string orderStatus; // Active Closed Refunded
+    }
+
+    mapping(uint256 => OrderDetails) public orderList;
 
     constructor(string memory merchantName) {
-        // require(merchantName =! "", "Merchant name is blank");
+        require(bytes(merchantName).length != 0, "Merchant name is blank");
         _merchantName = merchantName;
     }
 
-    function addPurchase(uint256 payableAmount) public payable nonReentrant {
+    // Add purchase (Expires after 2 months)
+    function addPurchase(uint256 payableAmount, uint256 productID) public payable nonReentrant {
         require(msg.value == payableAmount, "Payable is not valid!");
+        OrderDetails memory orderDetails = OrderDetails(orderCount + 1, productID, msg.sender, address(this), payableAmount, block.timestamp + 60 seconds, "Active");
+        orderCount++;
+        orderList[orderCount] = orderDetails;
+        emit purchaseRegistered(orderDetails);
     }
-    
-    function withdraw() public onlyOwner nonReentrant {
-        (bool success, ) = msg.sender.call{value: address(this).balance}("");
-        require(success, "Withdraw failed.");
+
+    // Customer signs the contract denoting order delivered
+    function sign(uint256 orderID) public {
+        require(keccak256(bytes(orderList[orderID].orderStatus)) != keccak256(bytes("Closed")), "Customer has already received!");
+        require(orderList[orderID].customerAddress == msg.sender, "Order ID does not belong to user");
+        orderList[orderID].orderStatus = "Closed";
+        payout(orderList[orderID].customerAddress, orderList[orderID].orderAmount);
+        emit orderSigned(orderList[orderID]);
+    }
+
+    // Release funds held after expiry
+    function release(uint256 orderID) public onlyOwner nonReentrant {
+        require(block.timestamp >= orderList[orderID].expiryDate);
+        payout(msg.sender, orderList[orderID].orderAmount);
+        orderList[orderID].orderStatus = "Closed";
+        emit orderReleased(orderList[orderID]);
+    }
+
+    // Refund customer from incomplete order
+    function refund(uint256 orderID) public onlyOwner nonReentrant {
+        payout(orderList[orderID].customerAddress, orderList[orderID].orderAmount);
+        orderList[orderID].orderStatus = "Refunded";
+        emit orderRefunded(orderList[orderID]);
+    }
+
+    function payout(address destination, uint256 payableAmount) public {
+        payable(destination).transfer(payableAmount);
     }
 
     function balanceOf() public view returns (uint256){
