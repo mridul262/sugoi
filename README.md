@@ -1,3 +1,30 @@
+# Compilation Instructions
+
+## To compile the frontend
+```bash
+git clone git@github.com:mridul262/sugoi.git
+cd Sugoi-Dashboard/
+yarn
+yarn start
+```
+
+## To deploy the smart contracts
+```bash
+cd celodappstarter/packages/hardhat
+yarn
+yarn deploy
+```
+
+**NOTE:** The backend and postgres database have been deployed on a heroku web app
+
+## Gitbook API Reference
+https://cuboid.gitbook.io/api-docs/
+
+
+
+
+# Project Description
+
 ## What did you build?
 Qubo acts as a payment gateway for b2b and p2p transactions. Our solution would come in the form of an API that merchants / sellers can use to integrate into their website. The user flow is as follows:
 
