@@ -40,7 +40,6 @@ def make_merchant_object(merchant_tuple):
 def make_currency_object(currency_tuple):
   return {
     "id": currency_tuple[0],
-    "name": currency_tuple[1],
   }
 
 def make_order_object(order_tuple):
