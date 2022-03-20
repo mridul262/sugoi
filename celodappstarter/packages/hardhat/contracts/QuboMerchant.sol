@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract QuboMerchant is Ownable, ReentrancyGuard {
     address _CELO = 0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9;
+    address public _merchantAddress;
     bool _customerReceived = false;
     bool _merchantSent = false;
     string public _merchantName;
@@ -31,15 +32,16 @@ contract QuboMerchant is Ownable, ReentrancyGuard {
 
     mapping(uint256 => OrderDetails) public orderList;
 
-    constructor(string memory merchantName) {
+    constructor(string memory merchantName, address merchantAddress) {
         require(bytes(merchantName).length != 0, "Merchant name is blank");
         _merchantName = merchantName;
+        _merchantAddress = merchantAddress;
     }
 
     // Add purchase (Expires after 2 months)
     function addPurchase(uint256 payableAmount, uint256 productID) public payable nonReentrant {
         require(msg.value == payableAmount, "Payable is not valid!");
-        OrderDetails memory orderDetails = OrderDetails(orderCount + 1, productID, msg.sender, address(this), payableAmount, block.timestamp + 60 seconds, "Active");
+        OrderDetails memory orderDetails = OrderDetails(orderCount + 1, productID, msg.sender, _merchantAddress, payableAmount, block.timestamp + 60 seconds, "Active");
         orderCount++;
         orderList[orderCount] = orderDetails;
         emit purchaseRegistered(orderDetails);
