@@ -3,6 +3,9 @@ import { Route, Router, Switch } from 'react-router-dom';
 
 /* Pages */
 import BrandCampaignListPage from './pages/BrandCampaignListPage';
+import CustomersPage from './pages/CustomersPage';
+import ProductsPage from './pages/ProductsPage';
+import OrdersPage from './pages/OrdersPage';
 
 /* Styling */
 import { theme, Layout } from './styles/styling';
@@ -37,6 +40,9 @@ const BaseRouter = () => (
 	<Router history={history}>
 		<Switch>
 			<CustomRoute exact path="/" component={BrandCampaignListPage} />
+			<CustomRoute exact path="/customers" component={CustomersPage} />
+			<CustomRoute exact path="/products" component={ProductsPage} />
+			<CustomRoute exact path="/orders" component={OrdersPage} />
 		</Switch>
 	</Router>
 );

@@ -23,26 +23,41 @@ const Nav = () => {
 
 	return (
 		<section className={styles.brandNav}>
-			<div className={styles.brandNavOptions}>
-				<p className={styles.logo}> h. </p>
-				<button
-					className={`
-						${styles.iconBox}
-						${history.location.pathname === '/' && styles.iconBox_selected}
-					`}
-					onClick={() => handleChangePage('/')}
-				>
-					<i className={`icofont icofont-home ${styles.icon} 
-						${window.location.pathname === '/' ? styles.active : ''}`} />
-				</button>
-			</div>
 			<button
 				className={`
-					${styles.iconBox}
+					${styles.navOption}
+					${history.location.pathname === '/' && styles.navOption_selected}
 				`}
-				onClick={handleLogout}
+				onClick={() => handleChangePage('/')}
 			>
-				<i className={`icofont icofont-logout ${styles.icon}`} />
+				Home
+			</button>
+			<button
+				className={`
+					${styles.navOption}
+					${history.location.pathname === '/products' && styles.navOption_selected}
+				`}
+				onClick={() => handleChangePage('/products')}
+			>
+				Products
+			</button>
+			<button
+				className={`
+					${styles.navOption}
+					${history.location.pathname === '/customers' && styles.navOption_selected}
+				`}
+				onClick={() => handleChangePage('/customers')}
+			>
+				Customers
+			</button>
+			<button
+				className={`
+					${styles.navOption}
+					${history.location.pathname === '/orders' && styles.navOption_selected}
+				`}
+				onClick={() => handleChangePage('/orders')}
+			>
+				Orders
 			</button>
 		</section>
 	);
