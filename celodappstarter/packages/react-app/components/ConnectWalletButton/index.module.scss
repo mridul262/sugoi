@@ -1,3 +1,5 @@
+@import '../../styles/guidelines.scss';
+
 .connectWallet {
     display: flex;
     flex-direction: row;
@@ -7,4 +9,17 @@
 
 .network {
     margin-right: 18px;
+}
+
+.address {
+    height: 25px;
+    min-width: 300px;
+    width: max-content;
+    margin: 20px 0;
+    background: $prim_white;
+    border-radius: 4px;
+    border: 1px solid $sage6;
+    padding: 5px 15px;
+    opacity: 0.5;
+    pointer-events: none;
 }

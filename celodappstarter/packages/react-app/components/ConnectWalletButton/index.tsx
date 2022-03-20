@@ -1,9 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import { useContractKit } from "@celo-tools/use-contractkit";
@@ -25,12 +22,6 @@ export default function ButtonAppBar() {
             />}
           {address && (
             <>
-              <Chip
-                label={truncateAddress(address)}
-                color="info"
-                onDelete={destroy}
-                sx={{mx:1}}
-              />
               {windowDimensions.width >= 600 ?
                 <Button variant="outlined" color="inherit" onClick={destroy}>
                   Disconnect
@@ -44,10 +35,11 @@ export default function ButtonAppBar() {
               variant="outlined"
               onClick={() => connect().catch((e) => console.log(e))}
             >
-              Connect wallet
+              Connect
             </Button>
           )}
       </div>
+      <Box className={styles.address}>Wallet: {address || 'Please Connect Wallet'}</Box>
     </Box>
   );
 }
