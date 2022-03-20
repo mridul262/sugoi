@@ -67,18 +67,18 @@ const OrdersPage = () => {
 				<TabsWrapper
 					handleTabChange={handleTabChange}
 					selectedTab={selectedTabList}
-					tabsDisplayList={['Active Orders', 'Closed Orders', 'Disputed Orders']}
+					tabsDisplayList={['Active Orders', 'Closed Orders']}
 				>
 					{userData?.data && (<TabPanel>
-						<OrdersTable campaigns={userData.data} />
+						<OrdersTable campaigns={userData.data.filter(
+							(campaign: any) => campaign.status === 'Active'
+						)} />
 					</TabPanel>)}
 					
 					{userData?.data && (<TabPanel>
-						<OrdersTable campaigns={userData.data} />
-					</TabPanel>)}
-
-					{userData?.data && (<TabPanel>
-						<OrdersTable campaigns={userData.data} />
+						<OrdersTable campaigns={userData.data.filter(
+							(campaign: any) => campaign.status === 'Closed'
+						)} />
 					</TabPanel>)}
 				</TabsWrapper>
 			</main>
