@@ -3,7 +3,7 @@ from flask import request
 from flask import jsonify
 import json
 
-# import dbinterface
+import dbinterface
 
 app = Flask(__name__)
 
@@ -17,10 +17,10 @@ def get_success_response():
 def hello_world():
     return "<p>Hello World!</p>"
 
-# @app.route('/merchants/create_merchants', methods=['POST'])
-# def create_merchant():
-#     merchant_data = parse_to_dict(request.get_data())
-#     dbinterface.create_merchant(name=merchant_data['name'], email=merchant_data['email'], wallet_addr=merchant_data['wallet_addr'])
-#     return get_success_response()
+@app.route('/merchants/create_merchants', methods=['POST'])
+def create_merchant():
+    merchant_data = parse_to_dict(request.get_data())
+    dbinterface.create_merchant(name=merchant_data['name'], email=merchant_data['email'], wallet_addr=merchant_data['wallet_addr'])
+    return get_success_response()
 
 
