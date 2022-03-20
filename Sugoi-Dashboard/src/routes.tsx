@@ -12,7 +12,7 @@ import { theme, Layout } from './styles/styling';
 
 /* Utils */
 import history from './utils/History';
-
+import CustomerPage from './pages/CustomerPage';
 
 interface RouteProps {
 	path: string;
@@ -20,9 +20,9 @@ interface RouteProps {
 	component: any;
 }
 export const CustomRoute = (props: RouteProps) => {
-	const { path, exact, component: Component} = props;
+	const { path, exact, component: Component } = props;
 	return (
-		<Route 
+		<Route
 			path={path}
 			exact={exact}
 			render={(renderProps: any) => {
@@ -39,10 +39,11 @@ export const CustomRoute = (props: RouteProps) => {
 const BaseRouter = () => (
 	<Router history={history}>
 		<Switch>
-			<CustomRoute exact path="/" component={BrandCampaignListPage} />
-			<CustomRoute exact path="/customers" component={CustomersPage} />
-			<CustomRoute exact path="/products" component={ProductsPage} />
-			<CustomRoute exact path="/orders" component={OrdersPage} />
+			<CustomRoute exact path='/' component={BrandCampaignListPage} />
+			<CustomRoute exact path='/customers' component={CustomersPage} />
+			<CustomRoute exact path='/products' component={ProductsPage} />
+			<CustomRoute exact path='/orders' component={OrdersPage} />
+			<CustomRoute path='/customer/:id' component={CustomerPage} />
 		</Switch>
 	</Router>
 );
