@@ -1,17 +1,25 @@
 from flask import Flask
 from flask import request
 from flask import jsonify
+from flask_cors import CORS, cross_origin
 import json
 
 import middleware.dbinterface as dbinterface
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 def parse_to_dict(data):
     return json.loads(data.decode("utf-8"))
 
 def get_success_response():
     return jsonify(success=True)
+
+@app.route("/")
+@cross_origin()
+def helloWorld():
+  return "Hello, cross-origin-world!"
 
 # Merchant apis
 # POST requests
