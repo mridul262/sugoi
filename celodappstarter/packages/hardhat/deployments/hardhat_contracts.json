@@ -4,6 +4,7 @@
       "name": "alfajores",
       "chainId": "44787",
       "contracts": {
+<<<<<<< Updated upstream
         "Greeter": {
           "address": "0xd317da4f7CC0b2BF28a2064a5C375D13b373F384",
           "abi": [
@@ -67,6 +68,10 @@
         },
         "QuboMerchant": {
           "address": "0x5454c70eBc57fe78E4608567182dB7a92300DB20",
+=======
+        "QuboMerchant": {
+          "address": "0xc0d8CE7828b997Ac1378a3dB6B7404678cCbE152",
+>>>>>>> Stashed changes
           "abi": [
             {
               "inputs": [
@@ -420,6 +425,19 @@
                 }
               ],
               "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "payableAmount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "payCurr",
+              "outputs": [],
+              "stateMutability": "nonpayable",
               "type": "function"
             },
             {

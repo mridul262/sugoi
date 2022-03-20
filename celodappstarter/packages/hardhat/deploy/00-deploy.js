@@ -20,12 +20,15 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log: true,
   });
 
+<<<<<<< Updated upstream
   await deploy("Greeter", {
     from: deployer,
     args: ["hello world"],
     log: true,
   });
 
+=======
+>>>>>>> Stashed changes
   // Getting a previously deployed contract
   // const Greeter = new ethers.Contract("Greeter", deployer);
 
@@ -57,4 +60,4 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   */
 };
 
-module.exports.tags = ["Greeter", "QuboMerchant"];
+module.exports.tags = ["QuboMerchant"];
