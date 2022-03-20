@@ -39,11 +39,23 @@ const OrdersTable = (props: Props) => {
 
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
 					<Table.HeaderCell>Currency</Table.HeaderCell>
-					<Table.Cell dataKey="currency_name" />
+					<Table.Cell dataKey="currency" />
 				</Table.Column>
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
 					<Table.HeaderCell>Merchant Address</Table.HeaderCell>
-					<Table.Cell dataKey="merchant_addr" />
+					<Table.Cell dataKey="">{(rowData: any) => rowData.merchant.email}</Table.Cell>
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Merchant Wallet Address</Table.HeaderCell>
+					<Table.Cell dataKey="">{(rowData: any) => rowData.merchant.wallet_addr}</Table.Cell>
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Customer Id</Table.HeaderCell>
+					<Table.Cell dataKey="">{(rowData: any) => rowData.customer.id}</Table.Cell>
+				</Table.Column>
+				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
+					<Table.HeaderCell>Customer Wallet Address</Table.HeaderCell>
+					<Table.Cell dataKey="">{(rowData: any) => rowData.customer.wallet_addr}</Table.Cell>
 				</Table.Column>
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="left">
 					<Table.HeaderCell>Product Id</Table.HeaderCell>
