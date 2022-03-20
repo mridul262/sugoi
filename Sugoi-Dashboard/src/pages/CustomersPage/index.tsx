@@ -1,6 +1,7 @@
 /* eslint-disable react/state-in-constructor */
 // Basic Imports
-import React from 'react';
+import React, {useEffect} from 'react';
+import axios from 'axios'
 import { connect } from 'react-redux';
 import { TabPanel } from 'react-tabs';
 
@@ -19,6 +20,11 @@ import { campaigns } from '../../consts/brandCampaigns';
 
 const CustomersPage = () => {
 	const [selectedTabList, setSelectedTabList] = React.useState<number>(0);
+	const [userData, setUserData] = React.useState<any>();
+	useEffect(() => {
+		axios.get('/customers').then((res) => {setUserData(res); console.log(userData)}).catch((err)=> {console.log(err)})
+		console.log(userData)
+	  }, []);
 	const handleTabChange = (index: number) => {
 		setSelectedTabList(index);
 	};
@@ -63,13 +69,14 @@ const CustomersPage = () => {
 					selectedTab={selectedTabList}
 					tabsDisplayList={['All', 'Current']}
 				>
-					<TabPanel>
-						<CustomersTable campaigns={campaigns} />
-					</TabPanel>
+					{console.log(userData)}
+					{userData?.data && (<TabPanel>
+						<CustomersTable campaigns={userData.data} />
+					</TabPanel>)}
 
-					<TabPanel>
-						<CustomersTable campaigns={campaigns} />
-					</TabPanel>
+					{userData?.data && (<TabPanel>
+						<CustomersTable campaigns={userData.data} />
+					</TabPanel>)}
 				</TabsWrapper>
 			</main>
 		</>

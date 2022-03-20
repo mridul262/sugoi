@@ -32,13 +32,13 @@ def create_merchant():
 def make_order_object(order_tuple):
     return {
         "id":order_tuple[0],
-        "customer_addr":order_tuple[1],
-        "currency_name":order_tuple[2],
-        "merchant_addr":order_tuple[3],
-        "amount":order_tuple[4],
-        "status": order_tuple[5],
+        "amount":order_tuple[1],
+        "status":order_tuple[2],
+        "currency": dbinterface.get_currency([("id", order_tuple[3])]),
+        "customer": dbinterface.get_customer([("id", order_tuple[4])]),
+        "merchant": dbinterface.get_merchant([("id", order_tuple[5])]) ,
         "expiry": order_tuple[6],
-        "product_id":order_tuple[7]
+        "product": dbinterface.get_product([("id", order_tuple[7])]) 
     }
 
 # GET requests
