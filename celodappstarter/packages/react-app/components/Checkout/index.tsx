@@ -58,7 +58,7 @@ export default function Checkout({ contractData, products }) {
           payload['customer_addr'] = arrayReturnData['customerAddress'];
           payload['merchant_addr'] = arrayReturnData['merchantAddress'];
           payload['amount'] = hexNumberToInteger(arrayReturnData['orderAmount']);
-          payload['status'] = arrayReturnData['orderStatus'];
+          payload['status'] = 'Active';
           /* Get expire date to be yyyy-mm-dd HH:MM:ss format */
           const expireDate = new Date(arrayReturnData['expiryDate'] * 1000);
           const expireDateString = expireDate.toISOString().split('T')[0] + ' ' + expireDate.toTimeString().split(' ')[0];
@@ -111,13 +111,6 @@ export default function Checkout({ contractData, products }) {
 
   return (
     <div className={styles.checkoutWrapper}>
-        {contractData ? (
-          <Link href={contractLink} target="_blank">
-            {truncateAddress(contractData?.address)}
-          </Link>
-        ) : (
-          <Typography>No contract detected for {network.name}</Typography>
-        )}      
         <h2>
           Connect Wallet
         </h2>

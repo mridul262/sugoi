@@ -49,10 +49,6 @@ const OrdersTable = (props: Props) => {
 					<Table.Cell dataKey="">{(rowData: any) => rowData.customer.id}</Table.Cell>
 				</Table.Column>
 				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="center">
-					<Table.HeaderCell>Product Id</Table.HeaderCell>
-					<Table.Cell dataKey="product_id" />
-				</Table.Column>
-				<Table.Column width={SMALL_WIDTH} verticalAlign="middle" align="center">
 					<Table.HeaderCell>Status</Table.HeaderCell>
 					<StatusCell dataKey='status' />
 				</Table.Column>

@@ -16,7 +16,7 @@ const PageHeader = (props: Props) => {
 	return (
 		<>
 			<Helmet>
-				<title>Hashtap - {title}</title>
+				<title>Qubo - {title}</title>
 			</Helmet>
  
 			<div className="page-header">
