@@ -111,13 +111,6 @@ export default function Checkout({ contractData, products }) {
 
   return (
     <div className={styles.checkoutWrapper}>
-        {contractData ? (
-          <Link href={contractLink} target="_blank">
-            {truncateAddress(contractData?.address)}
-          </Link>
-        ) : (
-          <Typography>No contract detected for {network.name}</Typography>
-        )}      
         <h2>
           Connect Wallet
         </h2>
