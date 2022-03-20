@@ -8,4 +8,9 @@
     height: 95vh;
     font-family: 'Poppins', sans-serif;
     width: 100%;
+
+    /* Change to column when mobile width */
+    @media (max-width: 1000px) {
+        flex-direction: column;
+    }
 }

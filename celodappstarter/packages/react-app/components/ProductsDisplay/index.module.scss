@@ -9,6 +9,11 @@
     height: 80%;
     border-right: 2px solid $sage6;
     position: relative;
+
+    @media (max-width: 1000px) {
+        border-right: none;
+        width: 100%;
+    }
 }
 
 .productsDisplayWrapper {
@@ -17,6 +22,10 @@
     padding-right: 50px;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 1000px) {
+        padding: 0 30px;
+    }
 }
 
 .merchantName {

@@ -9,3 +9,11 @@ export function getWindowDimensions() {
     height
   };
 }
+
+export const integerToHexNumber = (value: number) => {
+  return (value * 1e18).toString();
+}
+
+export const hexNumberToInteger = (value: string) => {
+  return parseFloat(value) / 1e18;
+}
