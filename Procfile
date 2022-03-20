@@ -1,1 +1,1 @@
-web: gunicorn middleware.apis:app
+web: flask run
