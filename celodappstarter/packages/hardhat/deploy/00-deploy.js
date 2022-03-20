@@ -14,6 +14,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
 
+  await deploy("QuboMerchant", {
+    from: deployer,
+    args: ["xupeng"],
+    log: true,
+  });
+
   await deploy("Greeter", {
     from: deployer,
     args: ["hello world"],
@@ -57,7 +63,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     LibraryName: **LibraryAddress**
   });
   */
-
 };
 
 module.exports.tags = ["Greeter", "QuboMerchant"];
